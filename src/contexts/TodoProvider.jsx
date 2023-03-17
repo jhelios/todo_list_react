@@ -53,9 +53,10 @@ function TodoProvider(props){
 
     const addTodo = (name) => {
         // eslint-disable-next-line
-        let newTodos = [... todos]
+        let newTodos = [...todos]
         let lastId  = -1
-        if (newTodos.length > 0) lastId  = newTodos[newTodos.length - 1].id
+        if (newTodos.length > 0) lastId  = newTodos.reduce((prev, current) => current.id >= prev.id ? current : prev).id
+        console.log(lastId)
 
         newTodos.push({
             id: lastId + 1,
