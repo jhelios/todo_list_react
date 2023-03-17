@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 Publish on https://jhelios.github.io/todo_list_react/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
