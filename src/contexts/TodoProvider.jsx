@@ -11,6 +11,17 @@ function TodoProvider(props){
 
     const [seachValue, setSearchValue] = React.useState('')
 
+    const organizeTodos = (newTodos) => {
+        const listCompletedTodos = newTodos.filter(todo => todo.completed)
+        const listUnCompletedTodos = newTodos.filter(todo => !todo.completed)
+
+        const sortCompletedTodos = listCompletedTodos.sort((t1, t2) => t1.id > t2.id ? 1 : t2.id > t1.id ? -1 : 0)
+        const sortUnCompletedTodos = listUnCompletedTodos.sort((t1, t2) => t1.id > t2.id ? 1 : t2.id > t1.id ? -1 : 0) 
+
+        newTodos = sortUnCompletedTodos.concat(sortCompletedTodos)
+        setTodos(newTodos)
+    }
+
     let todosFiltered = []
 
     if(seachValue.length === 0){
@@ -28,15 +39,7 @@ function TodoProvider(props){
             if (todoId === todo.id) todo.completed = !todo.completed
             return todo
         })
-
-        const listCompletedTodos = newTodos.filter(todo => todo.completed)
-        const listUnCompletedTodos = newTodos.filter(todo => !todo.completed)
-
-        const sortCompletedTodos = listCompletedTodos.sort((t1, t2) => t1.id > t2.id ? 1 : t2.id > t1.id ? -1 : 0)
-        const sortUnCompletedTodos = listUnCompletedTodos.sort((t1, t2) => t1.id > t2.id ? 1 : t2.id > t1.id ? -1 : 0) 
-
-        newTodos = sortUnCompletedTodos.concat(sortCompletedTodos)
-        setTodos(newTodos)
+        organizeTodos(newTodos)
     }
 
     const deleteTodo = (todoId) => {
@@ -44,7 +47,7 @@ function TodoProvider(props){
         let newTodos = todos.filter(todo => {
             if (todoId !== todo.id) return todo
         })
-        setTodos(newTodos)
+        organizeTodos(newTodos)
         UseToast('eliminada')
     }
 
@@ -59,7 +62,7 @@ function TodoProvider(props){
             name,
             completed: false
         })
-        setTodos(newTodos)
+        organizeTodos(newTodos)
         UseToast('creada')
     }
 
@@ -71,7 +74,7 @@ function TodoProvider(props){
             }
             return todo
         })
-        setTodos(newTodos)
+        organizeTodos(newTodos)
         UseToast('editada')
     }
 
