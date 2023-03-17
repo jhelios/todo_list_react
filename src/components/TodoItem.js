@@ -11,7 +11,7 @@ function TodoItem({ todoId, todoName, todoCompleted, updateCompletedTodo, delete
         cardClass = "w-96 bg-gray-300 border-gray-200 rounded-lg shadow mb-2"
         nameTextClass = "ml-3 text-md text-gray-500"
         editButtonClass = 'ml-auto hidden'
-        deleteButtonClass = 'ml-3 mr-1 hidden'
+        deleteButtonClass = 'ml-auto deleteButton mr-3 hover:text-red-600'
     }
 
     const onEdit = () =>{
