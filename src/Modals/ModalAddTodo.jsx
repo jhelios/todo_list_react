@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { BsJournalPlus } from 'react-icons/bs'
 
 function ModalAddTodo({ addTodo,  editTodo, selectEditTodo, setSelectEditTodo}) {
+
     const onChangeTextTodo = (event) => {
         setSelectEditTodo({id: selectEditTodo.id, name: event.target.value })
     }
@@ -17,7 +18,7 @@ function ModalAddTodo({ addTodo,  editTodo, selectEditTodo, setSelectEditTodo}) 
         }
         else if (selectEditTodo.name !== ''){
             addTodo(selectEditTodo.name)
-            setSelectEditTodo({id: selectEditTodo.id, name: '' })
+            setSelectEditTodo({id: selectEditTodo.id, name: '' });
         }
     }
 
@@ -64,7 +65,7 @@ function ModalAddTodo({ addTodo,  editTodo, selectEditTodo, setSelectEditTodo}) 
                                 <button onClick={onCloseModal} id='closeModalTodo' type="button" class="w-1/3 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm px-5 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" data-modal-hide="todoModal">
                                     Close
                                 </button>
-                                <button type="submit" class={`w-1/3 text-white ${selectEditTodo.id >= 0 ? 'bg-yellow-400 hover:bg-orange-800' : 'bg-blue-700 hover:bg-blue-800'} font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 text-center`}>
+                                <button type="submit" class={`w-1/3 text-white ${selectEditTodo.id >= 0 ? 'bg-yellow-400 hover:bg-orange-800' : 'bg-blue-700 hover:bg-blue-800'} font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 text-center`} data-modal-hide="todoModal">
                                     {selectEditTodo.id >= 0 ? 'Edit Todo' : 'Create Todo'}
                                 </button>
                             </div>                            

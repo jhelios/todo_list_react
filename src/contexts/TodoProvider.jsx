@@ -45,6 +45,7 @@ function TodoProvider(props){
             if (todoId !== todo.id) return todo
         })
         setTodos(newTodos)
+        UseToast('eliminada')
     }
 
     const addTodo = (name) => {
@@ -59,6 +60,7 @@ function TodoProvider(props){
             completed: false
         })
         setTodos(newTodos)
+        UseToast('creada')
     }
 
     const editTodo = (todoId, name) => {
@@ -70,9 +72,17 @@ function TodoProvider(props){
             return todo
         })
         setTodos(newTodos)
+        UseToast('editada')
     }
 
     const [selectEditTodo, setSelectEditTodo] = React.useState({id: -1, name: ''})
+
+    const [toastMessage, setToastMessage] = React.useState('')
+
+    const UseToast = (toastMsg) => {
+        setToastMessage(toastMsg)
+        setTimeout(() => setToastMessage(''), 3000)
+    }
 
     return (
         <TodoContext.Provider value={{
@@ -88,7 +98,9 @@ function TodoProvider(props){
                 addTodo,
                 editTodo,
                 selectEditTodo,
-                setSelectEditTodo
+                setSelectEditTodo,
+                toastMessage,
+                UseToast
             }
         }>
             {props.children}

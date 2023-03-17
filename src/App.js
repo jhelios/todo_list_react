@@ -7,14 +7,8 @@ import { TodoCounter } from './components/TodoCounter';
 import { TodoProvider, TodoContext } from './contexts/TodoProvider'
 import { ModalAddTodo } from './Modals/ModalAddTodo';
 import { TodoSkeleton } from './components/TodoSkeleton';
-import { AiFillLike } from 'react-icons/ai'
-
-// const defaultTodosOld = [
-//   {id: 0, name: 'Estudiar React', completed: false},
-//   {id: 1, name: 'Crear interfaces', completed: false},
-//   {id: 2, name: 'Manejar eventos', completed: false},
-//   {id: 3, name: 'Mostrar api pro', completed: true}
-// ]
+import { AiFillLike } from 'react-icons/ai';
+import { TodoToast } from './components/TodoToast';
 
 function App() {
   return (
@@ -28,7 +22,8 @@ function App() {
           addTodo,
           editTodo,
           selectEditTodo,
-          setSelectEditTodo
+          setSelectEditTodo,
+          toastMessage
         }) => (
           <div className='max-w-md mx-auto'>
             <div className='flex flex-col justify-center items-center'>
@@ -59,6 +54,7 @@ function App() {
                 selectEditTodo={selectEditTodo}
                 setSelectEditTodo={setSelectEditTodo}
               />
+              {toastMessage && <TodoToast Messaje={toastMessage}/>}
             </div>
           </div>
         )}
